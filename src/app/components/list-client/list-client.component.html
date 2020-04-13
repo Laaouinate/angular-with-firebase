@@ -1,0 +1,34 @@
+<div class="row my-3">
+    <div class="col-md-6">
+        <h1> List of client </h1>
+        
+    </div>
+    <div class="col-md-4 text-center">
+        <h4><span class="badge badge-info">{{ total }}</span></h4>
+    </div>
+    <div class="col-md-2 text-right"><a routerLink="/clients/create" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <input [(ngModel)]="search"  (keyup.enter)="searchClient()" type="text" placeholder="Search" class="form-control mr-2">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Fullname</th>
+                    <th>Infos</th>
+                    <th>Balance</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td>{{ client.firstName }} {{ client.lastName}}</td>
+                    <td>Phone {{ client.phone }} - Email {{ client.email }}</td>
+                    <td>{{ client.balance }}</td>
+                    <td><a [routerLink]="['/clients', client.id,'edit']" class="btn btn-warning mr-1 btn-sm"><i class="fa fa-pencil"></i></a>
+                    <button (click)="destroyClient(client.id)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
